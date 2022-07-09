@@ -38,7 +38,7 @@ pipeline {
                 {
                     sh "sudo docker login -u jirivasm -p ${dockerhubpass}"
                 }
-                 sh "docker push alpine-image:V1.0"
+                 sh "docker push flaskapp:V1.0"
              }
         }
         stage('run docker')
