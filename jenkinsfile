@@ -31,17 +31,17 @@ pipeline {
                 sh " sudo docker ps"
             }
         }
-        stage('push docker image to hub')
-        {
-            steps
-            {
-                withCredentials([string(credentialsId: '1b9f0e78-d442-447f-840c-54ac3ff4fbd5', variable: 'dockerhubpass')]) 
-                {
-                   sh "docker login -u jirivasm -p ${dockerhubpass}"
-                }
-                sh "docker push alpine-image:V1.0"
-            }
-        }
+        // stage('push docker image to hub')
+        // {
+            // steps
+            // {
+            //     withCredentials([string(credentialsId: '1b9f0e78-d442-447f-840c-54ac3ff4fbd5', variable: 'dockerhubpass')]) 
+            //     {
+            //        sh "docker login -u jirivasm -p ${dockerhubpass}"
+            //     }
+            //     sh "docker push alpine-image:V1.0"
+            // }
+        //}
         stage('run docker')
         {
             steps
