@@ -31,15 +31,16 @@ pipeline {
                 //sh "sudo docker run -d -p 5000:5000 --name flask-app alpine-image"
                 sh "sudo docker ps"
 
-                 withCredentials([string(credentialsId: '1b9f0e78-d442-447f-840c-54ac3ff4fbd5', variable: 'dockerpass')]) {
+                 withCredentials([string(credentialsId: '8bc7362d-d9a3-451a-aa3e-522009293e82', variable: 'dockerpass')]) {
                     sh "docker login -u jirivasm -p ${dockerpass}"
                  }
+                 sh "sudo docker push flaskapp:V1.0"
             }
         
-            //sh "docker push flaskapp:V1.0"
+            
         }
     }
-        
+}        
         // stage('run docker')
         // {
         //     steps
@@ -65,7 +66,7 @@ pipeline {
         //     }
         // }
     
-}          
+         
                 
         //         // create and run virtual environment.
         
