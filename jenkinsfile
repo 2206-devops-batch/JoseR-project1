@@ -30,10 +30,10 @@ pipeline {
                 sh "docker-compose up -d"
                 //sh "sudo docker run -d -p 5000:5000 --name flask-app alpine-image"
                 sh "sudo docker ps"
+                sh "sudo docker images"
 
-                sh "docker logout"
                 withCredentials([string(credentialsId: '8bc7362d-d9a3-451a-aa3e-522009293e82', variable: 'dockerpass')]) {
-                    sh 'sudo docker login -u jirivasm -p ${dockerpass} docker.io'
+                    sh 'sudo docker login -u jirivasm -p ${dockerpass} '
                  }
                  sh "sudo docker push jirivasm/flaskapp:V1.0"
             }
