@@ -33,10 +33,11 @@ pipeline {
 
                 // withCredentials([string(credentialsId: '1b9f0e78-d442-447f-840c-54ac3ff4fbd5', variable: 'dockerpass')]) {
                 //     sh "sudo docker login -u jirivasm -p '${dockerpass}'"
-                }
-                //sh "docker push flaskapp:V1.0"
             }
+        
+            //sh "docker push flaskapp:V1.0"
         }
+    }
         
         // stage('run docker')
         // {
@@ -62,7 +63,7 @@ pipeline {
         //         sh "python3 -m flask run --host=0.0.0.0 "
         //     }
         // }
-    }
+    
 }          
                 
         //         // create and run virtual environment.
