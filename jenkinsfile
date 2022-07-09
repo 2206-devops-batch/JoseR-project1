@@ -32,7 +32,7 @@ pipeline {
                 sh "sudo docker ps"
 
                  withCredentials([string(credentialsId: '8bc7362d-d9a3-451a-aa3e-522009293e82', variable: 'dockerpass')]) {
-                    sh "docker login -u jirivasm -p ${dockerpass}"
+                    sh 'docker login -u jirivasm -p ${dockerpass}'
                  }
                  sh "sudo docker push flaskapp:V1.0"
             }
