@@ -1,9 +1,7 @@
-FROM alpine:latest
+FROM python:latest
 
-RUN apk update
-RUN apk add python3 py3-pip py3-flask
-RUN mkdir /app
-
-COPY ./app.py /app/app.py
+WORKDIR /app
+COPY . /app/
+RUN pip install -r requirements.txt
 
 CMD ["flask", "run", "--host0.0.0.0"]
