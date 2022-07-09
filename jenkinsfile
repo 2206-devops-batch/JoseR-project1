@@ -33,9 +33,9 @@ pipeline {
 
                 sh "docker logout"
                 withCredentials([string(credentialsId: '8bc7362d-d9a3-451a-aa3e-522009293e82', variable: 'dockerpass')]) {
-                    sh 'sudo docker login -u jirivasm -p ${dockerpass}'
+                    sh 'sudo docker login -u jirivasm -p ${dockerpass} docker.io'
                  }
-                 sh "sudo docker push flaskapp:V1.0"
+                 sh "sudo docker push jirivasm/flaskapp:V1.0"
             }
         
             
