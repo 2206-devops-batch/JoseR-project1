@@ -25,28 +25,46 @@ pipeline {
         {
             steps
             {
-                sh "sudo docker build . -t alpine-image"
-                sh "sudo docker run -d -p 5000:5000 --name flask-app alpine-image"
+                sh "sudo docker build . -t alpine-image:V1.0"
+                //sh "sudo docker run -d -p 5000:5000 --name flask-app alpine-image"
                 sh " sudo docker images"
                 sh " sudo docker ps"
             }
         }
-        stage('build venv and install requirements')
+        stage('push docker image to hub')
         {
             steps
             {
-                sh "python3 -m venv venv"
-                sh ". venv/bin/activate"
-                sh "pip install flask"
+                withCredentials([string(credentialsId: '1b9f0e78-d442-447f-840c-54ac3ff4fbd5', variable: 'dockerhubpass')]) 
+                {
+                   sh "docker login -u jirivasm -p ${dockerhubpass}"
+                }
+                sh "docker push "
             }
         }
-        stage('run flask')
+        stage('run docker')
         {
             steps
             {
-                sh "python3 -m flask run --host=0.0.0.0 "
+                sh "docker run -d -p 5000:5000 alpine-image:V1.0"
             }
         }
+        // stage('build venv and install requirements')
+        // {
+        //     steps
+        //     {
+        //         sh "python3 -m venv venv"
+        //         sh ". venv/bin/activate"
+        //         sh "pip install flask"
+        //     }
+        // }
+        // stage('run flask')
+        // {
+        //     steps
+        //     {
+        //         sh "python3 -m flask run --host=0.0.0.0 "
+        //     }
+        // }
     }
 }          
                 

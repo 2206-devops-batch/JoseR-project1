@@ -6,4 +6,4 @@ RUN mkdir /app
 
 COPY ./app.py /app/app.py
 
-CMD flask run --host0.0.0.0
+CMD ["flask", "run", "--host0.0.0.0"]
