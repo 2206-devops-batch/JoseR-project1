@@ -25,25 +25,27 @@ pipeline {
         {
             steps
             {
-                sh "sudo docker build . -t flaskapp:V1.0"
-                //sh "sudo docker run -d -p 5000:5000 --name flask-app alpine-image"
-                sh " sudo docker ps"
+                sh "sudo docker build . -t flaskapp:V1.0 $WORKSPACE"
 
-                withCredentials([string(credentialsId: '1b9f0e78-d442-447f-840c-54ac3ff4fbd5', variable: 'dockerpass')]) {
-                    sh "sudo docker login -u jirivasm -p ${dockerpass}"
+                sh "docker-compose up -d"
+                //sh "sudo docker run -d -p 5000:5000 --name flask-app alpine-image"
+                sh "sudo docker ps"
+
+                // withCredentials([string(credentialsId: '1b9f0e78-d442-447f-840c-54ac3ff4fbd5', variable: 'dockerpass')]) {
+                //     sh "sudo docker login -u jirivasm -p '${dockerpass}'"
                 }
                 //sh "docker push flaskapp:V1.0"
             }
         }
         
-        stage('run docker')
-        {
-            steps
-            {
-                sh "sudo docker run -d -p 5000:5000 flaskapp:V1.0"
-                sh "sudo docker ps"
-            }
-        }
+        // stage('run docker')
+        // {
+        //     steps
+        //     {
+        //         sh "sudo docker run -d -p 5000:5000 flaskapp:V1.0"
+        //         sh "sudo docker ps"
+        //     }
+        // }
         // stage('build venv and install requirements')
         // {
         //     steps

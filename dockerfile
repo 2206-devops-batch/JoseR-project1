@@ -1,9 +1,9 @@
 
 FROM python:3.10.5-slim-bullseye
-WORKDIR /app
-COPY ./requirements.txt /app/requirements.txt
+WORKDIR /flask-app
+COPY ./requirements.txt /flask-app/requirements.txt
 RUN pip install -r requirements.txt
 
-COPY . /app
+COPY . /flask-app
 
 CMD ["flask", "run", "--host0.0.0.0"]
