@@ -29,10 +29,10 @@ pipeline {
                 //sh "sudo docker run -d -p 5000:5000 --name flask-app alpine-image"
                 sh " sudo docker ps"
 
-                withCredentials([string(credentialsId: '1b9f0e78-d442-447f-840c-54ac3ff4fbd5', variable: ''), usernameColonPassword(credentialsId: '377e2d27-5cda-4cb4-b0d5-6b6c9b0ac643', variable: 'dockerpass')]) {
+                withCredentials([string(credentialsId: '1b9f0e78-d442-447f-840c-54ac3ff4fbd5', variable: 'dockerpass')]) {
                     sh "sudo docker login -u jirivasm -p ${dockerpass}"
                 }
-                sh "docker push flaskapp:V1.0"
+                //sh "docker push flaskapp:V1.0"
             }
         }
         
