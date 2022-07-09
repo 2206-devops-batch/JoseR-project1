@@ -39,7 +39,7 @@ pipeline {
                 {
                    sh "docker login -u jirivasm -p ${dockerhubpass}"
                 }
-                sh "docker push "
+                sh "docker push alpine-image:V1.0"
             }
         }
         stage('run docker')
