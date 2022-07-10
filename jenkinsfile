@@ -21,16 +21,6 @@ pipeline {
                 
             }
         }
-        stage('Code Quality')
-        {
-            steps
-            {
-                withSonarQubeEnv(installationName: 'SonarQube')
-                {
-                    sh ' mvn clean package sonar:sonar'
-                }
-            }   
-        }
         stage('build docker image and container')
         {
             steps
