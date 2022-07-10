@@ -23,10 +23,13 @@ pipeline {
         }
         stage('Code Quality')
         {
-            withSonarQubeEnv(installationName: 'SonarQube')
+            steps
             {
-                sh ' mvn clean package sonar:sonar'
-            }
+                withSonarQubeEnv(installationName: 'SonarQube')
+                {
+                    sh ' mvn clean package sonar:sonar'
+                }
+            }   
         }
         stage('build docker image and container')
         {
